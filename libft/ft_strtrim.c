@@ -1,18 +1,5 @@
 #include "libft.h"
 
-/*
-** Allocates (with malloc(3)) and returns a copy of 's1' with the characters
-** specified in 'set' removed from the beginning and end of the string.
-**
-** Parameters:
-** - s1: The string to be trimmed.
-** - set: The set of characters to trim from 's1'.
-**
-** Returns:
-** A new string representing the trimmed version of 's1'. The trimmed string
-** is allocated with malloc(3), and it is the caller's responsibility to free
-** this memory.
-*/
 char	*ft_strtrim(char const *s1, char const *set)
 {
 	size_t	len;

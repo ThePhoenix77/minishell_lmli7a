@@ -1,10 +1,5 @@
 #include "libft.h"
 
-/*
-** count - Helper function to count the number of digits in a number.
-** @param n: The number for which digits need to be counted.
-** @return: The count of digits in the number.
-*/
 static int	count(int n)
 {
 	int		c;
@@ -25,12 +20,6 @@ static int	count(int n)
 	return (c);
 }
 
-/*
-** ft_itoa - Converts an integer to a string.
-** @param n: The integer to be converted.
-** @return: The string representation of the integer.
-** Note: Memory is allocated for the result, and the caller is responsible for freeing it.
-*/
 char	*ft_itoa(int n)
 {
 	int		c;

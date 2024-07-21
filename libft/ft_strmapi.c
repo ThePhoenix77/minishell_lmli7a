@@ -1,16 +1,5 @@
 #include "libft.h"
 
-/*
-** Applies the function 'f' to each character of the string 's' to create a new
-** string resulting from successive applications of 'f'.
-**
-** Parameters:
-** - s: The string to apply the function to.
-** - f: The function to apply to each character.
-**
-** Returns:
-** A new string resulting from the successive applications of 'f'.
-*/
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
 	size_t	i;

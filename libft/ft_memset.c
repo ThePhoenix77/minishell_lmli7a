@@ -1,13 +1,5 @@
 #include "libft.h"
 
-/*
-** ft_memset - Fills the first `len` bytes of the memory area pointed to by `b`
-** with the constant byte `c`.
-** @param b: Pointer to the memory area.
-** @param c: Value to be set.
-** @param len: Number of bytes to be set to the value.
-** @return: A pointer to the memory area `b`.
-*/
 void	*ft_memset(void *b, int c, size_t len)
 {
 	unsigned char	*str;
@@ -20,7 +12,5 @@ void	*ft_memset(void *b, int c, size_t len)
 		str[i] = (unsigned char)c;
 		i++;
 	}
-
-	// Return a pointer to the memory area `b`
 	return (b);
 }
