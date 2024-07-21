@@ -1,29 +1,24 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: eaboudi <eaboudi@student.42.fr>            +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/03 09:55:14 by eaboudi           #+#    #+#             */
-/*   Updated: 2023/11/03 09:56:18 by eaboudi          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "libft.h"
 
-char	*ft_strchr(const char *s, int c)
+/*
+** ft_strchr - Locate the first occurrence of a character in a string.
+** @param str: The string to search.
+** @param c: The character to locate.
+** @return: A pointer to the first occurrence of `c` in `str`, or NULL if `c` is not found.
+*/
+char	*ft_strchr(const char *str, int c)
 {
-	char	ch;
-
-	ch = (char)c;
-	while (*s)
+	while (*str != '\0')
 	{
-		if (*s == ch)
-			return ((char *)s);
-		s++;
+		if (*str == (char)c)
+			return ((char *)str);
+		str++;
 	}
-	if (ch == '\0')
-		return ((char *)s);
+
+	// Check for the null terminator if `c` is 0
+	if (*str == (char)c)
+		return ((char *)str);
+
+	// If `c` is not found, return NULL
 	return (NULL);
 }

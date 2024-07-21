@@ -1,18 +1,18 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_toupper.c                                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: eaboudi <marvin@42.fr>                     +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/03 09:44:47 by eaboudi           #+#    #+#             */
-/*   Updated: 2023/11/03 09:45:00 by eaboudi          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+#include "libft.h"
 
+/*
+** Converts a lowercase letter to its corresponding uppercase letter.
+**
+** Parameters:
+** - c: The character to be converted.
+**
+** Returns:
+** The uppercase equivalent of the input character if it is a lowercase letter.
+** If the input character is not a lowercase letter, the original character is returned.
+*/
 int	ft_toupper(int c)
 {
-	if (c >= 97 && c <= 122)
+	if (c >= 'a' && c <= 'z')
 		return (c - 32);
 	return (c);
 }

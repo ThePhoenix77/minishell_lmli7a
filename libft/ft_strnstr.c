@@ -1,37 +1,44 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_strnstr.c                                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: eaboudi <eaboudi@student.42.fr>            +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/04 14:35:45 by eaboudi           #+#    #+#             */
-/*   Updated: 2023/11/05 12:05:49 by eaboudi          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "libft.h"
 
+/*
+** Locates the first occurrence of the null-terminated string 'needle' in the
+** null-terminated string 'haystack', where not more than 'len' characters are
+** searched.
+**
+** Parameters:
+** - haystack: The string to be searched.
+** - needle: The target substring to search for.
+** - len: The maximum number of characters to search.
+**
+** Returns:
+** If 'needle' is an empty string, 'haystack' is returned. If 'needle' occurs
+** nowhere in 'haystack' up to 'len' characters, NULL is returned. Otherwise,
+** a pointer to the first character of the first occurrence of 'needle' is
+** returned.
+*/
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 {
+	char	*tmp1;
+	char	*tmp2;
 	size_t	i;
-	size_t	j;
 
 	if (*needle == '\0')
 		return ((char *)haystack);
-	if (!len && !haystack)
-		return (0);
-	i = 0;
-	while (haystack[i] && i < len)
+	while (len > 0 && *haystack)
 	{
-		j = 0;
-		while (haystack[i + j] == needle[j] && (i + j) < len)
+		i = 0;
+		tmp1 = (char *)haystack;
+		tmp2 = (char *)needle;
+		while (*tmp2 && *tmp1 == *tmp2 && i < len)
 		{
-			j++;
-			if (ft_strlen(needle) == j)
-				return ((char *)haystack + i);
+			tmp1++;
+			tmp2++;
+			i++;
 		}
-		i++;
+		if (*tmp2 == '\0')
+			return ((char *)haystack);
+		haystack++;
+		len--;
 	}
-	return (0);
+	return (NULL);
 }

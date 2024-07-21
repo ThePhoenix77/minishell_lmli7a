@@ -1,31 +1,37 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: eaboudi <eaboudi@student.42.fr>            +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/03 09:49:21 by eaboudi           #+#    #+#             */
-/*   Updated: 2023/11/11 12:04:31 by eaboudi          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "libft.h"
 
+/*
+** Copies up to 'dstsize - 1' characters from the string 'src' to 'dst'.
+** Ensures that 'dst' is null-terminated.
+**
+** Parameters:
+** - dst: The destination buffer.
+** - src: The source string to be copied.
+** - dstsize: The size of the destination buffer.
+**
+** Returns:
+** The total length of the source string.
+*/
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
-	size_t	i;
-	size_t	src_len;
+	size_t	srcsize;
+	const char	*srcp;
 
-	src_len = ft_strlen(src);
-	i = 0;
+	// Calculate the length of the source string
+	srcsize = ft_strlen(src);
+	srcp = src;
+	// Check if the destination size is zero
 	if (dstsize == 0)
-		return (src_len);
-	while (src[i] && i < dstsize - 1)
+		return (srcsize);
+	// Copy characters from source to destination, ensuring null-termination
+	if (dstsize > 0)
 	{
-		dst[i] = src[i];
-		i++;
+		while (--dstsize > 0 && *src)
+		{
+			*dst++ = *src++;
+		}
+		*dst = '\0';
 	}
-	dst[i] = '\0';
-	return (src_len);
+	// Return the total length of the source string
+	return (srcsize);
 }

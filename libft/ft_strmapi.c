@@ -1,35 +1,37 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_strmapi.c                                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: eaboudi <eaboudi@student.42.fr>            +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/09 10:20:56 by eaboudi           #+#    #+#             */
-/*   Updated: 2023/11/17 11:50:15 by eaboudi          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "libft.h"
 
+/*
+** Applies the function 'f' to each character of the string 's' to create a new
+** string resulting from successive applications of 'f'.
+**
+** Parameters:
+** - s: The string to apply the function to.
+** - f: The function to apply to each character.
+**
+** Returns:
+** A new string resulting from the successive applications of 'f'.
+*/
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	size_t	s_len;
 	size_t	i;
-	char	*str;
+	size_t	len;
+	char	*res;
 
-	if (!s || !f)
-		return (NULL);
-	s_len = ft_strlen(s);
 	i = 0;
-	str = (char *)malloc(sizeof(char) * (s_len + 1));
-	if (!str)
+	if ((s == NULL) || (f == NULL))
 		return (NULL);
-	while (s[i])
+	len = ft_strlen(s);
+	res = (char *)malloc((sizeof(char)) * (len + 1));
+	if (res == NULL)
+		return (NULL);
+	else
 	{
-		str[i] = f(i, s[i]);
-		i++;
+		while (i < len)
+		{
+			res[i] = f(i, s[i]);
+			i++;
+		}
+		res[i] = '\0';
 	}
-	str[i] = '\0';
-	return (str);
+	return (res);
 }

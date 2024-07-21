@@ -1,28 +1,26 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: eaboudi <eaboudi@student.42.fr>            +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/03 09:54:37 by eaboudi           #+#    #+#             */
-/*   Updated: 2023/11/16 17:10:36 by eaboudi          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "libft.h"
 
+/*
+** ft_memset - Fills the first `len` bytes of the memory area pointed to by `b`
+** with the constant byte `c`.
+** @param b: Pointer to the memory area.
+** @param c: Value to be set.
+** @param len: Number of bytes to be set to the value.
+** @return: A pointer to the memory area `b`.
+*/
 void	*ft_memset(void *b, int c, size_t len)
 {
+	unsigned char	*str;
 	size_t			i;
-	unsigned char	*p;
 
+	str = (unsigned char *)b;
 	i = 0;
-	p = (unsigned char *)b;
 	while (i < len)
 	{
-		p[i] = c;
+		str[i] = (unsigned char)c;
 		i++;
 	}
+
+	// Return a pointer to the memory area `b`
 	return (b);
 }

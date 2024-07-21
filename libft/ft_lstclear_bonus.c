@@ -1,27 +1,36 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_lstclear_bonus.c                                :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: eaboudi <eaboudi@student.42.fr>            +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/15 12:06:13 by eaboudi           #+#    #+#             */
-/*   Updated: 2023/11/15 12:11:46 by eaboudi          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "libft.h"
 
+/*
+** ft_lstclear - Deletes and frees the memory of each element of a list.
+** @param lst: The address of a pointer to the first link of a list.
+** @param del: The address of the function used to delete the content of an element.
+** @return: None.
+*/
 void	ft_lstclear(t_list **lst, void (*del)(void*))
 {
-	t_list	*ptr;
+	t_list	*current;
+	t_list	*next;
 
-	if (!lst || !del)
+	// Check for NULL pointers or NULL function pointer
+	if (lst == NULL || *lst == NULL || del == NULL)
 		return ;
-	while (*lst)
+
+	// Start from the first element of the list
+	current = *lst;
+
+	// Traverse the list
+	while (current != NULL)
 	{
-		ptr = (*lst)->next;
-		ft_lstdelone(*lst, del);
-		*lst = ptr;
+		// Save the next element before deleting the current one
+		next = current->next;
+
+		// Delete the current element using the provided function
+		ft_lstdelone(current, del);
+
+		// Move to the next element
+		current = next;
 	}
+
+	// Set the list pointer to NULL after deleting all elements
+	*lst = NULL;
 }

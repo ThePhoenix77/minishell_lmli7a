@@ -1,28 +1,39 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_memmove.c                                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: eaboudi <eaboudi@student.42.fr>            +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/12 14:51:27 by eaboudi           #+#    #+#             */
-/*   Updated: 2023/11/18 14:59:47 by eaboudi          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "libft.h"
 
+/*
+** ft_memmove - Copies `len` bytes from memory area `src` to memory area `dst`.
+** @param dst: Pointer to the destination memory area.
+** @param src: Pointer to the source memory area.
+** @param len: Number of bytes to be copied.
+** @return: A pointer to the destination memory area `dst`.
+*/
 void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	unsigned char	*sorc;
-	unsigned char	*dest;
+	unsigned char	*d;
+	unsigned char	*s;
 
-	sorc = (unsigned char *)src;
-	dest = (unsigned char *)dst;
-	if (sorc < dest)
-		while (len--)
-			dest[len] = sorc[len];
+	d = (unsigned char *)dst;
+	s = (unsigned char *)src;
+
+	// Check if the pointers are valid
+	if ((dst == NULL) && (src == NULL))
+		return (NULL);
+
+	// If source and destination overlap and source is before destination
+	if (d > s && d < s + len)
+	{
+		s += len;
+		d += len;
+		while (len-- > 0)
+			*--d = *--s;
+	}
 	else
-		ft_memcpy(dst, src, len);
+	{
+		// Copy `len` bytes from `src` to `dst`
+		while (len-- > 0)
+			*d++ = *s++;
+	}
+
+	// Return a pointer to the destination memory area `dst`
 	return (dst);
 }

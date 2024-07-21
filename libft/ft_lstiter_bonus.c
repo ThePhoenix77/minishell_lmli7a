@@ -1,24 +1,24 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_lstiter_bonus.c                                 :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: eaboudi <eaboudi@student.42.fr>            +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/15 12:43:00 by eaboudi           #+#    #+#             */
-/*   Updated: 2023/11/17 09:11:04 by eaboudi          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "libft.h"
 
+/*
+** ft_lstiter - Iterates over a list and applies a function to each element.
+** @param lst: The beginning of the list.
+** @param f: The function to apply to each element.
+** @return: None.
+*/
 void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
-	if (!lst || !f)
+	// Check for NULL pointers
+	if (lst == NULL || f == NULL)
 		return ;
-	while (lst)
+
+	// Iterate over the list
+	while (lst != NULL)
 	{
-		f(lst->content);
+		// Apply the provided function to the content of the current element
+		(*f)(lst->content);
+
+		// Move to the next element in the list
 		lst = lst->next;
 	}
 }

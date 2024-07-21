@@ -1,26 +1,31 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_lstadd_back_bonus.c                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: eaboudi <eaboudi@student.42.fr>            +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/15 10:51:53 by eaboudi           #+#    #+#             */
-/*   Updated: 2023/11/18 09:20:36 by eaboudi          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "libft.h"
 
+/*
+** ft_lstadd_back - Adds a new element to the end of the list.
+** @param lst: The address of a pointer to the first link of a list.
+** @param new: The address of a pointer to the element to be added to the list.
+** @return: None.
+*/
 void	ft_lstadd_back(t_list **lst, t_list *new)
 {
 	t_list	*last;
 
-	if (!lst || !new)
+	// Check for NULL pointers
+	if (lst == NULL || new == NULL)
 		return ;
-	last = ft_lstlast(*lst);
-	if (last)
-		last->next = new;
-	else
+	
+	// If the list is empty, set the new element as the first element
+	if (*lst == NULL)
+	{
 		*lst = new;
+		return ;
+	}
+
+	// Traverse the list to find the last element
+	last = *lst;
+	while (last->next != NULL)
+		last = last->next;
+
+	// Add the new element to the end of the list
+	last->next = new;
 }

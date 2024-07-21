@@ -1,18 +1,12 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_isprint.c                                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: eaboudi <eaboudi@student.42.fr>            +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/03 09:53:48 by eaboudi           #+#    #+#             */
-/*   Updated: 2023/11/13 17:10:46 by eaboudi          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+#include "libft.h"
 
+/*
+** ft_isprint - Checks if the given character is a printable ASCII character.
+** @param c: The character to be checked.
+** @return: 1 if the character is printable, 0 otherwise.
+*/
 int	ft_isprint(int c)
 {
-	if (c >= 32 && c <= 126)
-		return (1);
-	return (0);
+	/* Check if the character is within the printable ASCII range (32 to 126) */
+	return ((c >= 32) && (c <= 126));
 }

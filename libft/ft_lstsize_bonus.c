@@ -1,30 +1,29 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_lstsize_bonus.c                                 :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: eaboudi <eaboudi@student.42.fr>            +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/15 09:45:00 by eaboudi           #+#    #+#             */
-/*   Updated: 2023/11/17 09:09:37 by eaboudi          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "libft.h"
 
+/*
+** ft_lstsize - Counts the number of elements in a list.
+** @param lst: The beginning of the list.
+** @return: The number of elements in the list.
+*/
 int	ft_lstsize(t_list *lst)
 {
-	t_list	*ptr;
-	int		cnt;
+	int		size;
+	t_list	*current;
 
-	if (lst == NULL)
+	size = 0;
+	current = lst;
+
+	// Check if the list is empty
+	if (!lst)
 		return (0);
-	cnt = 0;
-	ptr = lst;
-	while (ptr != NULL)
+
+	// Traverse the list and count the elements
+	while (current != NULL)
 	{
-		cnt++;
-		ptr = ptr -> next;
+		size++;
+		current = current->next;
 	}
-	return (cnt);
+
+	// Return the number of elements in the list
+	return (size);
 }

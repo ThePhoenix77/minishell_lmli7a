@@ -1,35 +1,45 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: eaboudi <eaboudi@student.42.fr>            +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/07 21:35:22 by eaboudi           #+#    #+#             */
-/*   Updated: 2023/11/13 17:29:45 by eaboudi          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "libft.h"
 
+/*
+** Concatenates two strings 's1' and 's2' and returns a new string.
+**
+** Parameters:
+** - s1: The first string.
+** - s2: The second string.
+**
+** Returns:
+** A new string resulting from the concatenation of 's1' and 's2'.
+** NULL is returned if memory allocation fails.
+*/
 char	*ft_strjoin(char const *s1, char const *s2)
 {
-	size_t	len1;
-	size_t	len2;
-	char	*str;
+	int		i;
+	int		j;
+	char	*joined_str;
 
-	if (!s1 && !s2)
+	i = 0;
+	j = 0;
+	// Check for NULL parameters
+	if ((s1 == NULL) || (s2 == NULL))
 		return (NULL);
-	if (!s1)
-		return ((char *)s2);
-	if (!s2)
-		return ((char *)s1);
-	len1 = ft_strlen(s1);
-	len2 = ft_strlen(s2);
-	str = malloc(sizeof(char) * (len1 + len2 + 1));
-	if (!str)
+	// Allocate memory for the new string
+	joined_str = (char *)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
+	if (joined_str == NULL)
 		return (NULL);
-	ft_strlcpy(str, s1, len1 + 1);
-	ft_strlcat(str, s2, len1 + len2 + 1);
-	return (str);
+	// Copy characters from the first string 's1'
+	while (i < ft_strlen(s1))
+	{
+		joined_str[i] = s1[i];
+		i++;
+	}
+	// Copy characters from the second string 's2'
+	while (j < ft_strlen(s2))
+	{
+		joined_str[i] = s2[j];
+		i++;
+		j++;
+	}
+	// Add null terminator to the end of the joined string
+	joined_str[i] = '\0';
+	return (joined_str);
 }

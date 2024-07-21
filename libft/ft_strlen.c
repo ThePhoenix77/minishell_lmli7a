@@ -1,23 +1,23 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: eaboudi <eaboudi@student.42.fr>            +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/03 09:48:33 by eaboudi           #+#    #+#             */
-/*   Updated: 2023/11/03 09:48:42 by eaboudi          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "libft.h"
 
-size_t	ft_strlen(const char *s)
+/*
+** Computes the length of the string 's'.
+**
+** Parameters:
+** - s: The string to compute the length of.
+**
+** Returns:
+** The length of the string.
+*/
+int	ft_strlen(const char *s)
 {
-	size_t	i;
+	int	i;
 
 	i = 0;
-	while (*(s + i))
+	while (*s)
+	{
 		i++;
+		s++;
+	}
 	return (i);
 }

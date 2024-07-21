@@ -1,49 +1,59 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_itoa.c                                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: eaboudi <eaboudi@student.42.fr>            +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/10 11:10:36 by eaboudi           #+#    #+#             */
-/*   Updated: 2023/11/13 16:06:25 by eaboudi          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "libft.h"
 
-static int	ft_number_lenght(int nbr)
+/*
+** count - Helper function to count the number of digits in a number.
+** @param n: The number for which digits need to be counted.
+** @return: The count of digits in the number.
+*/
+static int	count(int n)
 {
-	int	cnt;
+	int		c;
+	long	num;
 
-	cnt = 1;
-	while (nbr / 10)
+	num = n;
+	c = 0;
+	if (num <= 0)
 	{
-		cnt++;
-		nbr /= 10;
+		c = 1;
+		num *= -1;
 	}
-	return (cnt + (nbr < 0));
+	while (num > 0)
+	{
+		num /= 10;
+		c++;
+	}
+	return (c);
 }
 
+/*
+** ft_itoa - Converts an integer to a string.
+** @param n: The integer to be converted.
+** @return: The string representation of the integer.
+** Note: Memory is allocated for the result, and the caller is responsible for freeing it.
+*/
 char	*ft_itoa(int n)
 {
-	long	nbr;
-	int		nbr_len;
-	char	*str;
+	int		c;
+	long	num;
+	char	*res;
 
-	nbr = n;
-	nbr_len = ft_number_lenght(nbr);
-	str = (char *)ft_calloc(sizeof(char), (nbr_len + 1));
-	if (!str)
+	c = count(n);
+	num = n;
+	res = (char *)malloc(sizeof(char) * (c + 1));
+	if (res == NULL)
 		return (NULL);
-	if (nbr < 0)
-		nbr = -nbr;
-	while (nbr_len)
+	res[c--] = '\0';
+	if (num < 0)
 	{
-		str[--nbr_len] = nbr % 10 + '0';
-		nbr /= 10;
+		num *= -1;
+		res[0] = '-';
 	}
-	if (n < 0)
-		str[0] = '-';
-	return (str);
+	if (num == 0)
+		res[0] = '0';
+	while (num > 0)
+	{
+		res[c--] = (num % 10) + '0';
+		num /= 10;
+	}
+	return (res);
 }

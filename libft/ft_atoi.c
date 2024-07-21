@@ -1,36 +1,49 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: eaboudi <eaboudi@student.42.fr>            +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/03 09:51:21 by eaboudi           #+#    #+#             */
-/*   Updated: 2024/05/05 11:21:35 by eaboudi          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "libft.h"
 
-static int	ft_isspace2(int c)
+/*
+** ft_check - Helper function to parse and convert digits to integer.
+** @param i: The index in the string.
+** @param nb: The accumulated value of the number.
+** @param sign: The sign of the number (1 or -1).
+** @param str: The input string.
+** @return: The parsed integer.
+*/
+static int	ft_check(int i, long nb, int sign, const char *str)
 {
-	return (c == 32 || (c >= 9 && c <= 13));
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		nb = (nb * 10) + (str[i] - 48);
+		if (nb < 0 && sign == -1)
+			return (0);
+		else if (nb < 0 && sign == 1)
+			return (-1);
+		i++;
+	}
+	return ((int)(nb * sign));
 }
 
-long	ft_atoi(const char *str)
+/*
+** ft_atoi - Converts a string to an integer.
+** @param str: The input string.
+** @return: The converted integer.
+*/
+int	ft_atoi(const char *str)
 {
-	long	num;
+	int		i;
 	int		sign;
+	long	nb;
 
-	num = 0;
+	i = 0;
 	sign = 1;
-	while (ft_isspace2(*str))
-		str++;
-	if (*str == '-' || *str == '+')
-		sign = 1 - 2 * (*str++ == '-');
-	while (ft_isdigit(*str))
-		num = num * 10 + *str++ - '0';
-	if (ft_issign(*str))
-		return (LONG_MAX);
-	return (num * sign);
+	nb = 0;
+	while (str[i] == 32 || (str[i] >= 9 && str[i] <= 13))
+		i++;
+	if (str[i] == '+')
+		i++;
+	else if (str[i] == '-')
+	{
+		sign = -1;
+		i++;
+	}
+	return (ft_check(i, nb, sign, str));
 }

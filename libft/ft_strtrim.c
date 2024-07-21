@@ -1,30 +1,32 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_strtrim.c                                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: eaboudi <eaboudi@student.42.fr>            +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/08 11:01:31 by eaboudi           #+#    #+#             */
-/*   Updated: 2023/11/13 10:18:52 by eaboudi          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "libft.h"
 
+/*
+** Allocates (with malloc(3)) and returns a copy of 's1' with the characters
+** specified in 'set' removed from the beginning and end of the string.
+**
+** Parameters:
+** - s1: The string to be trimmed.
+** - set: The set of characters to trim from 's1'.
+**
+** Returns:
+** A new string representing the trimmed version of 's1'. The trimmed string
+** is allocated with malloc(3), and it is the caller's responsibility to free
+** this memory.
+*/
 char	*ft_strtrim(char const *s1, char const *set)
 {
-	int		start;
-	int		end;
+	size_t	len;
+	char	*trimmed;
 
+	trimmed = (char *)s1;
 	if (!s1 || !set)
-		return (NULL);
-	start = 0;
-	end = ft_strlen(s1) - 1;
-	while (s1[start] && ft_strchr(set, s1[start]))
-		start++;
-	if (start <= end)
-		while (ft_strchr(set, s1[end]))
-			end--;
-	return (ft_substr(s1, start, end - start + 1));
+		return (0);
+	while (*s1 != '\0' && ft_strchr(set, *s1) != 0)
+		s1++;
+	len = ft_strlen(s1);
+	if (len != 0)
+		while (len >= 0 && ft_strchr(set, s1[len]) != 0)
+			len--;
+	trimmed = ft_substr((char *)s1, 0, len + 1);
+	return (trimmed);
 }

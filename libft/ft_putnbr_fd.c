@@ -1,32 +1,39 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: eaboudi <eaboudi@student.42.fr>            +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/12 10:05:41 by eaboudi           #+#    #+#             */
-/*   Updated: 2023/11/13 10:17:25 by eaboudi          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "libft.h"
 
+/*
+** ft_putnbr_fd - Outputs the integer `n` to the given file descriptor `fd`.
+** @param n: The integer to output.
+** @param fd: The file descriptor on which to write.
+*/
 void	ft_putnbr_fd(int n, int fd)
 {
-	long	nb;
+	long	nbr;
+	char	c;
 
-	nb = n;
+	// Convert the integer to a long for handling INT_MIN
+	nbr = n;
+
+	// Check if the file descriptor is valid
+	if (fd < 0)
+		return;
+
+	// Handle negative numbers
 	if (n < 0)
 	{
-		ft_putchar_fd('-', fd);
-		nb = -nb;
+		write(fd, "-", 1);
+		nbr = -nbr;
 	}
-	if (nb >= 10)
+
+	// Recursively handle each digit
+	if (nbr < 10)
 	{
-		ft_putnbr_fd(nb / 10, fd);
-		ft_putnbr_fd(nb % 10, fd);
+		c = nbr + '0';
+		write(fd, &c, 1);
 	}
 	else
-		ft_putchar_fd(nb + '0', fd);
+	{
+		c = nbr % 10 + '0';
+		ft_putnbr_fd(nbr / 10, fd);
+		write(fd, &c, 1);
+	}
 }

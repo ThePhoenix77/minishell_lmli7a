@@ -1,24 +1,35 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_striteri.c                                      :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: eaboudi <eaboudi@student.42.fr>            +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/09 12:31:36 by eaboudi           #+#    #+#             */
-/*   Updated: 2023/11/13 10:21:37 by eaboudi          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "libft.h"
 
-void	ft_striteri(char *s, void (*f)(unsigned int, char*))
+/*
+** Applies the function 'f' to each character of the string 's'
+** along with its index. The function 'f' takes two parameters:
+** the index of the character and a pointer to the character itself.
+**
+** Parameters:
+** - s: The string to iterate over.
+** - f: The function to apply to each character.
+**
+** Returns:
+** None.
+*/
+void	ft_striteri(char *s, void (*f)(unsigned int, char *))
 {
-	int	i;
+	size_t			len;
+	unsigned int	i;
 
-	if (!s || !f)
-		return ;
-	i = -1;
-	while (s[++i])
-		f(i, s + i);
+	i = 0;
+	// Check for NULL parameters
+	if ((s == NULL) || (f == NULL))
+		return;
+	// Calculate the length of the string
+	len = ft_strlen(s);
+	// Check for NULL parameters (again, after accessing 's')
+	if ((!s) || (!f))
+		return;
+	// Iterate over each character and apply the function 'f'
+	while (s[i])
+	{
+		f(i, &s[i]);
+		i++;
+	}
 }

@@ -1,84 +1,121 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_split.c                                         :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: eaboudi <eaboudi@student.42.fr>            +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/07 21:34:04 by eaboudi           #+#    #+#             */
-/*   Updated: 2023/11/18 14:58:59 by eaboudi          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "libft.h"
 
-static size_t	ft_count_words(const char *str, char sep)
+/*
+** count_words - Count the number of words in a string `s` delimited by the character `c`.
+** @param s: The string to count words in.
+** @param c: The delimiter character.
+** @return: The number of words in the string.
+*/
+static int	count_words(char const *s, char c)
 {
-	size_t	i;
-	size_t	words;
+	int	count;
+	int	word;
 
-	if (!str)
-		return (0);
-	words = 0;
-	i = 0;
-	while (str[i])
+	count = 0;
+	word = 0;
+	while (*s)
 	{
-		while (str[i] && str[i] == sep)
-			i++;
-		if (str[i] != '\0')
-			words++;
-		while (str[i] && str[i] != sep)
-			i++;
+		if (*s == c)
+			word = 0;
+		else if (!word)
+		{
+			word = 1;
+			count++;
+		}
+		s++;
 	}
-	return (words);
+	return (count);
 }
 
-static char	**ft_free_memory(char **strs, int k)
+/*
+** cpw - Copy a word from string `s` into a new dynamically allocated string.
+** @param s: The source string.
+** @param c: The delimiter character.
+** @return: The newly allocated string containing the word.
+*/
+static char	*cpw(char const *s, char c)
 {
-	while (k--)
-		free(strs[k]);
-	free(strs);
+	int		wlen;
+	char	*word;
+	int		i;
+
+	wlen = 0;
+	i = 0;
+	while (s[wlen] && s[wlen] != c)
+		wlen++;
+	word = (char *)malloc(wlen + 1);
+	if (word == NULL)
+		return (NULL);
+	while (i < wlen)
+	{
+		word[i] = s[i];
+		i++;
+	}
+	word[wlen] = '\0';
+	return (word);
+}
+
+/*
+** ft_free - Free the memory allocated for the result array.
+** @param res: The result array to be freed.
+** @param n: The number of elements in the result array.
+** @return: NULL.
+*/
+static char	**ft_free(char **res, int n)
+{
+	while (n > 0)
+		free(res[--n]);
+	free(res);
 	return (NULL);
 }
 
-static char	**second_split(char **strs, const char *s, char c)
-{
-	size_t	i;
-	size_t	k;
-	size_t	j;
-
-	i = 0;
-	k = 0;
-	while (s[i])
-	{
-		j = 0;
-		while (s[i] && s[i] == c)
-			i++;
-		if (s[i])
-		{
-			while (s[i + j] && s[i + j] != c)
-				j++;
-			strs[k] = ft_substr(s + i, 0, j);
-			if (!strs[k])
-				return (ft_free_memory(strs, k));
-			k++;
-		}
-		i += j;
-	}
-	strs[k] = NULL;
-	return (strs);
-}
-
+/*
+** ft_split - Split a string `s` into an array of words using the delimiter `c`.
+** @param s: The string to split.
+** @param c: The delimiter character.
+** @return: An array of strings (words) or NULL if memory allocation fails.
+*/
 char	**ft_split(char const *s, char c)
 {
-	size_t	number_of_words;
-	char	**strs;
+	char	**res;
+	int		i;
+	int		w_count;
 
+	// Check if the input string is NULL
 	if (!s)
 		return (NULL);
-	number_of_words = ft_count_words(s, c);
-	strs = (char **)malloc(sizeof(char *) * (number_of_words + 1));
-	if (!strs)
+
+	// Count the number of words in the string
+	w_count = count_words(s, c);
+
+	// Allocate memory for the result array
+	res = (char **)malloc(sizeof(char *) * (w_count + 1));
+	if (!res)
 		return (NULL);
-	return (second_split(strs, s, c));
+
+	// Initialize the last element of the array to NULL
+	res[w_count] = NULL;
+
+	i = 0;
+	while (i < w_count)
+	{
+		// Skip delimiter characters
+		while (*s && *s == c)
+			s++;
+
+		// Copy the word into the result array
+		res[i] = cpw(s, c);
+
+		// Check if memory allocation for the word failed
+		if (!res[i])
+			return (ft_free(res, i));
+
+		// Move to the next word
+		while (*s && *s != c)
+			s++;
+
+		i++;
+	}
+
+	return (res);
 }
