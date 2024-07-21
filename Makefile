@@ -6,7 +6,7 @@
 #    By: eaboudi <eaboudi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/24 18:55:06 by eaboudi           #+#    #+#              #
-#    Updated: 2024/07/21 10:17:16 by eaboudi          ###   ########.fr        #
+#    Updated: 2024/07/21 11:41:09 by eaboudi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = minishell
 
 HEADER = minishell.h
 
-CFILES = main.c
+CFILES = history_utils.c main.c
 
 OFILES = $(CFILES:%.c=%.o)
 
