@@ -3,15 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eaboudi <eaboudi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tboussad <tboussad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 19:32:36 by eaboudi           #+#    #+#             */
-/*   Updated: 2024/07/20 15:12:38 by eaboudi          ###   ########.fr       */
+/*   Updated: 2024/07/21 11:05:11 by tboussad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 #define MINISHELL_H
+
+#define HISTORY_FILE ".my_shell_history"
 
 #include <unistd.h>
 #include <stdio.h>
@@ -30,7 +32,8 @@ typedef	struct s_global
 	char	*line_input;
 }	t_global;
 
-
+void	initialize_history(void);
+void	save_history(void);
 
 
 #endif

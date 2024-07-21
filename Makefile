@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: eaboudi <eaboudi@student.42.fr>            +#+  +:+       +#+         #
+#    By: tboussad <tboussad@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/24 18:55:06 by eaboudi           #+#    #+#              #
-#    Updated: 2024/07/20 15:16:33 by eaboudi          ###   ########.fr        #
+#    Updated: 2024/07/21 11:05:22 by tboussad         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = minishell
 
 HEADER = minishell.h
 
-CFILES = main.c
+CFILES = main.c history_utils.c
 
 OFILES = $(CFILES:%.c=%.o)
 
@@ -35,11 +35,9 @@ $(NAME): $(OFILES)
 
 clean:
 	$(MAKE) clean -C $(LIBFT_DIR)
-	$(MAKE) clean -C $(LIBFT_DIR)
 	$(RM) -rf $(OFILES)
 
 fclean: clean
-	$(MAKE) fclean -C $(LIBFT_DIR)
 	$(MAKE) fclean -C $(LIBFT_DIR)
 	$(RM) -rf $(NAME)
 
