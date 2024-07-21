@@ -1,29 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   search_launch_path.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eaboudi <eaboudi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/04 09:53:24 by eaboudi           #+#    #+#             */
-/*   Updated: 2024/07/21 14:05:17 by eaboudi          ###   ########.fr       */
+/*   Created: 2024/07/21 13:59:26 by eaboudi           #+#    #+#             */
+/*   Updated: 2024/07/21 14:03:18 by eaboudi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "minishell.h"
 
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
+char	*get_path(t_global *global)
 {
-	size_t			i;
-
-	if (s1 == NULL)
-		
+	int	i;
+	
 	i = 0;
-	while ((*(s1 + i) || *(s2 + i)) && i < n)
+	while (1)
 	{
-		if ((*(unsigned char *)(s1 + i)) != (*(unsigned char *)(s2 + i)))
-			return (*(unsigned char *)(s1 + i) - *(unsigned char *)(s2 + i));
-		i++;
+		if (!ft_strncmp(global->env[i], "PATH=", 5))
+			
 	}
-	return (0);
 }
