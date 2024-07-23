@@ -6,7 +6,7 @@
 /*   By: tboussad <tboussad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 15:06:33 by eaboudi           #+#    #+#             */
-/*   Updated: 2024/07/21 16:21:20 by tboussad         ###   ########.fr       */
+/*   Updated: 2024/07/23 09:49:04 by tboussad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	ft_execve(char *cmd, char **env)
 		execve(cmd, split, env);
 		free_tab(split);
 		free(cmd);
-		handle_execve_error();
+		handle_execve_error();	//to check for usage right in subject (function below)
 	}
 }
 
