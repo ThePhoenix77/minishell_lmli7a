@@ -13,10 +13,9 @@
 #ifndef MINISHELL_H
 #define MINISHELL_H
 
-
 # define Failure false
 # define Success true
-# define HISTORY_FILE ".shell_history"
+# define HISTORY_FILE "~/.bash_history"
 
 #include <unistd.h>
 #include <stdio.h>
@@ -27,6 +26,23 @@
 #include <stdbool.h>
 #include "libft/libft.h"
 
+typedef enum s_type
+{
+	CMD,
+	PIPE,
+}	t_type;
+
+
+
+typedef struct s_lst
+{
+	struct s_lst	*next;
+	struct s_lst	*prev;
+	t_type			type;
+	int c;
+}	t_lst;
+
+
 
 typedef	struct s_global
 {
@@ -34,14 +50,10 @@ typedef	struct s_global
 	char	*line_input;
 }	t_global;
 
-void	initialize_history(void);
-void	save_history(void);
-void    free_tab(char **tab);
-char	*find_path(char **split, char *cmd);
-char	*get_path(char *cmd, char **envp);
-void	ft_execve(char	*line_input, char **env);
-void	handle_execve_error(void);
-void	free_tab(char **tab);
+
+/*----------------linked list functions--------------*/
+bool   add_back(t_lst **head, t_lst  **new);
+t_lst   *new_node(int i);
 
 
 #endif
