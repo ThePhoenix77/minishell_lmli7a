@@ -1,34 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_substr.c                                        :+:      :+:    :+:   */
+/*   Tokenzition.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eaboudi <eaboudi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/26 12:30:00 by eaboudi           #+#    #+#             */
-/*   Updated: 2024/07/26 12:31:06 by eaboudi          ###   ########.fr       */
+/*   Created: 2024/07/26 10:03:32 by eaboudi           #+#    #+#             */
+/*   Updated: 2024/07/26 12:31:47 by eaboudi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "minishell.h"
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+char	check_which_meta_char(char c, char *meta_chars)
 {
-	char	*ptr;
-	size_t	s_len;
-	size_t	i;
+	
+}
 
-	if (!s)
-		return (NULL);
-	s_len = ft_strlen(s);
+
+void	ft_tokeniz(t_global *global)
+{
+	int		i;
+	// char	*line;
+	char	*meta_chars;
+	char 	*set1;
+	char	*set2;
+
 	i = 0;
-	if (start >= s_len)
-		return (ft_strdup(""));
-	if (len >= s_len - start)
-		len = s_len - start;
-	ptr = malloc(sizeof(char) * len + 1);
-	if (!ptr)
-		return (NULL);
-	ft_strlcpy(ptr, s + start, len + 1);
-	return (ptr);
+	mete_chars = "\t\n\'\" |<>";
+	set1 = global->lien_input;
+	set2 = global->lien_input;
+	while (*set1 && set2[j])
+	{
+		if (ft_strser(meat_chars, set2))
+		{
+			
+		}
+	}
 }

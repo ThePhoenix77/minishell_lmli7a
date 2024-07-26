@@ -1,34 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_substr.c                                        :+:      :+:    :+:   */
+/*   utils_fun.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eaboudi <eaboudi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/26 12:30:00 by eaboudi           #+#    #+#             */
-/*   Updated: 2024/07/26 12:31:06 by eaboudi          ###   ########.fr       */
+/*   Created: 2024/07/26 11:58:43 by eaboudi           #+#    #+#             */
+/*   Updated: 2024/07/26 12:28:34 by eaboudi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "minishell.h"
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+
+int		ft_strser(char *str, char c)
 {
-	char	*ptr;
-	size_t	s_len;
-	size_t	i;
+	int	i;
 
-	if (!s)
-		return (NULL);
-	s_len = ft_strlen(s);
 	i = 0;
-	if (start >= s_len)
-		return (ft_strdup(""));
-	if (len >= s_len - start)
-		len = s_len - start;
-	ptr = malloc(sizeof(char) * len + 1);
-	if (!ptr)
-		return (NULL);
-	ft_strlcpy(ptr, s + start, len + 1);
-	return (ptr);
+	while (str[i])
+	{
+		if (c == str[i])
+			return (i);
+		i++;
+	}
+	return (0);
 }

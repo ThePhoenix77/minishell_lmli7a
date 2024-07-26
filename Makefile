@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tboussad <tboussad@student.42.fr>          +#+  +:+       +#+         #
+#    By: eaboudi <eaboudi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/21 14:21:59 by eaboudi           #+#    #+#              #
-#    Updated: 2024/07/21 14:44:22 by tboussad         ###   ########.fr        #
+#    Updated: 2024/07/26 12:01:49 by eaboudi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror
 NAME = minishell
 HEADER = minishell.h
-CFILES = linked_list_fun.c main.c
+CFILES = linked_list_fun.c utils_fun.c main.c
 OFILES = $(CFILES:%.c=%.o)
 LIBFT_DIR = libft
 RM = rm -rf

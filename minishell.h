@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tboussad <tboussad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eaboudi <eaboudi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 14:22:15 by eaboudi           #+#    #+#             */
-/*   Updated: 2024/07/21 16:21:07 by tboussad         ###   ########.fr       */
+/*   Updated: 2024/07/26 12:07:27 by eaboudi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,34 +26,56 @@
 #include <stdbool.h>
 #include "libft/libft.h"
 
-typedef enum s_type
+
+typedef enum e_type
 {
-	CMD,
-	PIPE,
+	WORD = -1,
+	WHITE_SPACE = ' ',
+	NEW_LINE = '\n',
+	QOUTE = '\'',
+	DOUBLE_QUOTE = '\"',
+	TAB = '\t',
+	ESCAPE = '\\',
+	ENV = '$',
+	PIPE = '|',
+	REDIR_IN = '<',
+	REDIR_OUT = '>',
+	HERE_DOC,
+	DREDIR_OUT,
 }	t_type;
 
+
+typedef enum e_state
+{
+	IN_DQUOTE,
+	IN_QUOTE,
+	GENERAL,
+}	t_state;
 
 
 typedef struct s_lst
 {
+	char			*content;
 	struct s_lst	*next;
 	struct s_lst	*prev;
 	t_type			type;
-	int c;
+	t_state			state;
+	int 			len;
 }	t_lst;
-
-
 
 typedef	struct s_global
 {
 	char	**env;
 	char	*line_input;
+	t_lst	*head;
 }	t_global;
 
 
 /*----------------linked list functions--------------*/
 bool   add_back(t_lst **head, t_lst  **new);
 t_lst   *new_node(int i);
+/*----------------utils functions-------------------*/
+int		ft_strser(char *str, char c);
 
 
 #endif
