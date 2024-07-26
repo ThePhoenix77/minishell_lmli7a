@@ -13,7 +13,7 @@
 #include "minishell.h"
 
 
-int		ft_strser(char *str, char c)
+char		ft_strser(char *str, char c)
 {
 	int	i;
 
@@ -21,8 +21,8 @@ int		ft_strser(char *str, char c)
 	while (str[i])
 	{
 		if (c == str[i])
-			return (i);
+			return (str[i]);
 		i++;
 	}
-	return (0);
+	return ('\0');
 }

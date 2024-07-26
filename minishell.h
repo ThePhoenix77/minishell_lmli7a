@@ -34,7 +34,7 @@ typedef enum e_type
 	NEW_LINE = '\n',
 	QOUTE = '\'',
 	DOUBLE_QUOTE = '\"',
-	TAB = '\t',
+	TABS = '\t',
 	ESCAPE = '\\',
 	ENV = '$',
 	PIPE = '|',
@@ -73,9 +73,9 @@ typedef	struct s_global
 
 /*----------------linked list functions--------------*/
 bool   add_back(t_lst **head, t_lst  **new);
-t_lst   *new_node(int i);
+t_lst   *new_node(char *content, t_type type, t_state state);
 /*----------------utils functions-------------------*/
-int		ft_strser(char *str, char c);
+char		ft_strser(char *str, char c);
 
 
 #endif

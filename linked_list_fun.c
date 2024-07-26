@@ -24,7 +24,7 @@ t_lst   *new_node(char *content, t_type type, t_state state)
     new->content = content;
 	new->type = type;
 	new->state = state;
-    new->len = ft_strlen(content);
+    new->len = 0;
 }
 
 bool   add_back(t_lst **head, t_lst  **new)
