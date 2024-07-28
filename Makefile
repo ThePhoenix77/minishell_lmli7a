@@ -14,7 +14,7 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror
 NAME = minishell
 HEADER = minishell.h
-CFILES = linked_list_fun.c utils_fun.c main.c
+CFILES = linked_list_fun.c utils_fun.c Tokenzition.c main.c
 OFILES = $(CFILES:%.c=%.o)
 LIBFT_DIR = libft
 RM = rm -rf

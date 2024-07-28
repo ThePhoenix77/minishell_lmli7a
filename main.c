@@ -17,7 +17,7 @@ void check_leaks()
 	system("leaks minishell");
 }
 
-void	get_line_and_add_to_history(t_global *global)
+void	get_line(t_global *global)
 {
 	read_history(HISTORY_FILE);
 	while (1)
@@ -28,7 +28,8 @@ void	get_line_and_add_to_history(t_global *global)
 		add_history(global->line_input);
 		if (global->line_input[0] == '#')
 			continue;
-		free(global->line_input);
+		ft_tokeniz(global);
+		// free(global->line_input);
 	}
 	write_history(HISTORY_FILE);
 }
@@ -40,13 +41,13 @@ void	get_line_and_add_to_history(t_global *global)
 
 int main(int argc, char **argv, char **env)
 {
-	atexit(check_leaks);
+	// atexit(check_leaks);
 	
 	if (argc != 1)
 		return (printf("Wrong number of arguments\n"));
 	t_global	global;
 
 	global.env = env;
-	get_line_and_add_to_history(&global);
+	get_line(&global);
 	return (0);
 }

@@ -76,6 +76,8 @@ bool   add_back(t_lst **head, t_lst  **new);
 t_lst   *new_node(char *content, t_type type, t_state state);
 /*----------------utils functions-------------------*/
 char		ft_strser(char *str, char c);
+char	*ft_get_token(char **line, int len);
+void	ft_tokeniz(t_global *global);
 
 
 #endif
