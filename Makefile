@@ -6,7 +6,7 @@
 #    By: eaboudi <eaboudi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/21 14:21:59 by eaboudi           #+#    #+#              #
-#    Updated: 2024/07/26 12:01:49 by eaboudi          ###   ########.fr        #
+#    Updated: 2024/07/29 17:31:08 by eaboudi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ CFILES = linked_list_fun.c utils_fun.c Tokenzition.c main.c
 OFILES = $(CFILES:%.c=%.o)
 LIBFT_DIR = libft
 RM = rm -rf
-
+#  CC += -g -fsanitize=address
 all: $(NAME)
 
 $(NAME): $(OFILES)

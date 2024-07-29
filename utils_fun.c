@@ -6,7 +6,7 @@
 /*   By: eaboudi <eaboudi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/26 11:58:43 by eaboudi           #+#    #+#             */
-/*   Updated: 2024/07/26 12:28:34 by eaboudi          ###   ########.fr       */
+/*   Updated: 2024/07/29 17:38:14 by eaboudi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,19 +26,20 @@ char		ft_strser(char *str, char c)
 	}
 	return ('\0');
 }
-bool update_line(char *line, int len)
+char *update_line(char *line, int len)
 {
 	char *old_line;
 	int		old_len;
 
 	old_line = line;
 	old_len = ft_strlen(old_line);
+	printf("---> old line :%s\n", old_line);
+	printf("---> old len :%d\n", old_len);
+	
 	char *upd_line;
-	upd_line = line + len;
-	upd_line = ft_strdup(upd_line);
-	free(line);
-	line = upd_line;
-
+	upd_line = ft_substr(line, len, old_len - len);
+	printf("updated line --->%s\n", upd_line);
+	return (upd_line);
 }
 
 char	*ft_get_token(char **line, int len)
@@ -51,6 +52,6 @@ char	*ft_get_token(char **line, int len)
 		return (NULL);
 	i = 0;
 	ft_strlcpy(ret, *line, len + 1);
-	update_line(*line, len);
+	*line = update_line(*line, len);
 	return (ret);
 }

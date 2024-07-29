@@ -6,7 +6,7 @@
 /*   By: eaboudi <eaboudi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/26 10:03:44 by eaboudi           #+#    #+#             */
-/*   Updated: 2024/07/26 11:44:49 by eaboudi          ###   ########.fr       */
+/*   Updated: 2024/07/29 17:16:48 by eaboudi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ t_lst   *new_node(char *content, t_type type, t_state state)
 	new->type = type;
 	new->state = state;
     new->len = 0;
+	return (new);
 }
 
 bool   add_back(t_lst **head, t_lst  **new)
