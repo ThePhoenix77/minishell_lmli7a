@@ -6,7 +6,7 @@
 /*   By: eaboudi <eaboudi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/26 12:29:25 by eaboudi           #+#    #+#             */
-/*   Updated: 2024/07/26 12:29:26 by eaboudi          ###   ########.fr       */
+/*   Updated: 2024/07/30 11:09:15 by eaboudi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ char	*ft_strdup(const char *s1)
 	while (s1[i])
 	{
 		copy[i] = s1[i];
+		i++;
 	}
 	copy[i] = '\0';
 	return (copy);

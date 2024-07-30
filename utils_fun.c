@@ -6,7 +6,7 @@
 /*   By: eaboudi <eaboudi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/26 11:58:43 by eaboudi           #+#    #+#             */
-/*   Updated: 2024/07/29 17:38:14 by eaboudi          ###   ########.fr       */
+/*   Updated: 2024/07/30 14:00:23 by eaboudi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,32 +26,66 @@ char		ft_strser(char *str, char c)
 	}
 	return ('\0');
 }
-char *update_line(char *line, int len)
+char *update_line(char *line, int len_skip)
 {
-	char *old_line;
-	int		old_len;
-
-	old_line = line;
-	old_len = ft_strlen(old_line);
-	printf("---> old line :%s\n", old_line);
-	printf("---> old len :%d\n", old_len);
-	
-	char *upd_line;
-	upd_line = ft_substr(line, len, old_len - len);
-	printf("updated line --->%s\n", upd_line);
-	return (upd_line);
-}
-
-char	*ft_get_token(char **line, int len)
-{
-	char *ret;
+	char *save_line;
 	int i;
 
-	ret = malloc(sizeof(char) * len + 1);
-	if (!ret)
-		return (NULL);
 	i = 0;
-	ft_strlcpy(ret, *line, len + 1);
-	*line = update_line(*line, len);
-	return (ret);
+	save_line = line;
+	while (i <= len_skip)
+	{
+		line++;
+		i++;
+	}
+	line = ft_strdup(line);
+	free(save_line);
+	return line;
 }
+
+char	*ft_get_token(t_global *global)
+{
+	char	delm;
+	char	*content;
+	char	**line;
+	int i;
+
+	i = 0;
+	line = &global->line_input;
+	global->status = 2;
+	global->type = -1;
+	delm = '\0';
+	while (line[0][i])
+	{
+		if (line[0][i] != '\0')
+			delm = ft_strser(META_CHARS, line[0][i]);
+		if (delm != '\0')
+		{
+			content = malloc(i + 1);
+			if (!content)
+				return (NULL);
+			ft_strlcpy(content, *line, i);
+			*line = update_line(*line, i);
+			// if (ft_strchr(META_CHARS, line[0][i]))
+			// {
+			// 	i++;
+			// }	
+			printf("content ---->%s\n\n", content);
+			printf("opera ---->'%c'\n\n", delm);
+			printf("line ---->%s\n\n", global->line_input);
+			i = 0;
+			delm = '\0';
+		}
+		i++;
+	}
+	// printf("----->%s\n", *line);
+	return (NULL);
+}
+
+
+// void	add_to_list(t_global *global, char *content)
+// {
+// 	t_lst	*new;
+
+// 	new = new_node(content, )
+// }

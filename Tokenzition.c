@@ -6,7 +6,7 @@
 /*   By: eaboudi <eaboudi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/26 10:03:32 by eaboudi           #+#    #+#             */
-/*   Updated: 2024/07/29 18:09:18 by eaboudi          ###   ########.fr       */
+/*   Updated: 2024/07/30 13:18:41 by eaboudi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,28 +66,14 @@ void	print_list(t_lst *head)
 }
 void	ft_tokeniz(t_global *global)
 {
-	char *content;
-	int len_un_meta;
-	char *meta_chars = " \t\n\'\"><|";
-	int i = 0;
-	char fr_meta_char = '\0';
-	char *save_line = global->line_input;
-	t_lst *new;
-	int j = 0;
-	while( global->line_input[i])
-	{
-		fr_meta_char = ft_strser(meta_chars, global->line_input[i]);
-		if (fr_meta_char != '\0')
-		{
-			content = ft_get_token(& global->line_input, i);
-			new = new_node(content, -1, 2);
-			add_back(&global->head, &new);
-			new = new_node(&fr_meta_char, fr_meta_char, 2);
-			add_back(&global->head, &new);
-			i = 0;
-			fr_meta_char = '\0';	
-		}
-		i++;
-	}
-	print_list(global->head);
+	
+	ft_get_token(global);
 }
+
+
+// void	build_list(t_global *global, char *content, t_type )
+// {
+// 	t_list	*new;
+	
+// 	new = new_node(content, )	
+// }

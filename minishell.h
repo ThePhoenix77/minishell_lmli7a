@@ -6,7 +6,7 @@
 /*   By: eaboudi <eaboudi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 14:22:15 by eaboudi           #+#    #+#             */
-/*   Updated: 2024/07/29 17:18:45 by eaboudi          ###   ########.fr       */
+/*   Updated: 2024/07/30 13:18:31 by eaboudi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # define Failure false
 # define Success true
 # define HISTORY_FILE "~/.bash_history"
+# define META_CHARS " \t\n\'\"><|"
 
 #include <unistd.h>
 #include <stdio.h>
@@ -68,6 +69,8 @@ typedef	struct s_global
 	char	**env;
 	char	*line_input;
 	t_lst	*head;
+	int		status;
+	int		type;
 }	t_global;
 
 
@@ -76,7 +79,7 @@ bool   add_back(t_lst **head, t_lst  **new);
 t_lst   *new_node(char *content, t_type type, t_state state);
 /*----------------utils functions-------------------*/
 char		ft_strser(char *str, char c);
-char	*ft_get_token(char **line, int len);
+char	*ft_get_token(t_global *global);
 void	ft_tokeniz(t_global *global);
 
 
