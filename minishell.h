@@ -6,7 +6,7 @@
 /*   By: eaboudi <eaboudi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 14:22:15 by eaboudi           #+#    #+#             */
-/*   Updated: 2024/07/30 13:18:31 by eaboudi          ###   ########.fr       */
+/*   Updated: 2024/07/31 11:13:39 by eaboudi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ typedef enum e_type
 	WORD = -1,
 	WHITE_SPACE = ' ',
 	NEW_LINE = '\n',
-	QOUTE = '\'',
+	SINGEL_QOUTE = '\'',
 	DOUBLE_QUOTE = '\"',
 	TABS = '\t',
 	ESCAPE = '\\',
@@ -49,7 +49,7 @@ typedef enum e_type
 typedef enum e_state
 {
 	IN_DQUOTE,
-	IN_QUOTE,
+	IN_SQUOTE,
 	GENERAL,
 }	t_state;
 
@@ -69,18 +69,20 @@ typedef	struct s_global
 	char	**env;
 	char	*line_input;
 	t_lst	*head;
-	int		status;
+	int		state;
 	int		type;
+	char	*content;
 }	t_global;
 
 
 /*----------------linked list functions--------------*/
 bool   add_back(t_lst **head, t_lst  **new);
-t_lst   *new_node(char *content, t_type type, t_state state);
+t_lst   *new_node(void);
+void	free_lst(t_lst	**head);
 /*----------------utils functions-------------------*/
-char		ft_strser(char *str, char c);
+char	ft_strser(char *str, char c);
 char	*ft_get_token(t_global *global);
-void	ft_tokeniz(t_global *global);
+int		ft_strlen_un_del(char *sep, char *str);
 
 
 #endif

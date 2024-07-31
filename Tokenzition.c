@@ -6,74 +6,90 @@
 /*   By: eaboudi <eaboudi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/26 10:03:32 by eaboudi           #+#    #+#             */
-/*   Updated: 2024/07/30 13:18:41 by eaboudi          ###   ########.fr       */
+/*   Updated: 2024/07/31 11:24:46 by eaboudi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// t_type	check_which_meta_char(char c, char *meta_chars)
-// {
-// 	int i;
-
-// 	i = 0;
-// 	while (meta_chars[i] && meta_chars[i] != c)
-// 		i++;
-// 	return (c);
-// }
-
-
-// void	ft_tokeniz(t_global *global)
-// {
-// 	int		i;
-// 	// char	*line;
-// 	char	*meta_chars;
-// 	char 	*set1;
-// 	char	*set2;
-// 	t_lst	*new;
-// 	char	*content;
-
-// 	i = 0;
-// 	meta_chars = "\t\n\'\" |<>";
-// 	set1 = global->line_input;
-// 	set2 = global->line_input;
-// 	while (*set1 && set2[j])
-// 	{
-// 		if (ft_strser(meta_chars, set2))
-// 		{
-// 			content = ft_substr(set2, j - 1, j
-// 			new = new_node();
-// 		}
-// 	}
-// }
-
-
-int	ft_strlen_mine(char c, char *str)
+void	update_line(char **line, int len_skip)
 {
-	int i = 0;
-	while (str[i] && str[i] != c)
-		i++;
-	return (i);
+	char *save;
+
+	save = ft_strdup (*line + len_skip);
+	free(*line);
+	*line = save;
+	save = NULL;
 }
 
-void	print_list(t_lst *head)
+void	add_list(t_global *global)
 {
-	while (1)
+	t_lst	*new;
+
+	new = new_node();
+	new->content = global->content;
+	new->state = global->state;
+	new->type = global->type;
+	new->len = ft_strlen(global->content);
+	add_back(&global->head, &new);
+	global->content = NULL;
+}
+
+void	take_opr(t_global *global)
+{
+	global->content = malloc(2);
+	if (!global)
+		return ((void)NULL);
+	global->content[0] = global->line_input[0];
+	global->content[1] = '\0';
+	global->type = global->content[0];
+	if (global->type == DOUBLE_QUOTE)
 	{
-		printf("%s\n", head->content);
-		head = head->next;
+		if (global->state == GENERAL)
+			global->state = IN_DQUOTE;
+		else if (global->state == IN_DQUOTE)
+			global->state = GENERAL;
 	}
+	if (global->type == SINGEL_QOUTE)
+	{
+		if (global->state == GENERAL)
+			global->state = IN_SQUOTE;
+		else if (global->state == IN_SQUOTE)
+			global->state = GENERAL;
+	}
+	add_list(global);
+	update_line(&global->line_input, 1);
 }
-void	ft_tokeniz(t_global *global)
+	
+
+char	*ft_get_token(t_global *global)
 {
+	char	**line;
+	int		len_un_sep;
+	t_lst	*new;
 	
-	ft_get_token(global);
+	line = &global->line_input;
+	// while (*line)
+	// {
+		len_un_sep = ft_strlen_un_del(META_CHARS, *line);
+		global->content = malloc(sizeof(char) * len_un_sep);
+		ft_strlcpy(global->content, *line, len_un_sep + 1);
+		add_list(global);
+		update_line(line, len_un_sep);
+		take_opr(global);
+		int i = 0;
+		while (i <= 2)
+		{
+			// printf("line ---->%s\n", global->line_input);
+			printf("content =====>%s\n", global->head->content);
+			global->head = global->head->next;
+			i++;
+		}	
+		free_lst(&global->head);
+		
+	// }
+	return (NULL);
 }
 
 
-// void	build_list(t_global *global, char *content, t_type )
-// {
-// 	t_list	*new;
-	
-// 	new = new_node(content, )	
-// }
+

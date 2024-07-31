@@ -6,7 +6,7 @@
 /*   By: eaboudi <eaboudi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 15:06:33 by eaboudi           #+#    #+#             */
-/*   Updated: 2024/07/29 17:46:54 by eaboudi          ###   ########.fr       */
+/*   Updated: 2024/07/31 09:55:12 by eaboudi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ void	get_line(t_global *global)
 		add_history(global->line_input);
 		if (global->line_input[0] == '#')
 			continue;
-		ft_tokeniz(global);
+		// ft_tokeniz(global);
+		ft_get_token(global);
 		// free(global->line_input);
 	}
 	write_history(HISTORY_FILE);
