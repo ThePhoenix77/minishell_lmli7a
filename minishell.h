@@ -6,7 +6,7 @@
 /*   By: eaboudi <eaboudi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 14:22:15 by eaboudi           #+#    #+#             */
-/*   Updated: 2024/07/31 11:13:39 by eaboudi          ###   ########.fr       */
+/*   Updated: 2024/08/04 11:38:00 by eaboudi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,13 +76,16 @@ typedef	struct s_global
 
 
 /*----------------linked list functions--------------*/
-bool   add_back(t_lst **head, t_lst  **new);
-t_lst   *new_node(void);
+bool	add_back(t_lst **head, t_lst  **new);
 void	free_lst(t_lst	**head);
+void	add_list(t_global *global);
+t_lst	*new_node(void);
 /*----------------utils functions-------------------*/
 char	ft_strser(char *str, char c);
 char	*ft_get_token(t_global *global);
 int		ft_strlen_un_del(char *sep, char *str);
+void	update_line(char **line, int len_skip);
+void	skip_ec_t(t_global *global);
 
 
 #endif

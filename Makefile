@@ -6,7 +6,7 @@
 #    By: eaboudi <eaboudi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/21 14:21:59 by eaboudi           #+#    #+#              #
-#    Updated: 2024/07/31 10:15:41 by eaboudi          ###   ########.fr        #
+#    Updated: 2024/08/03 15:17:16 by eaboudi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror
 NAME = minishell
 HEADER = minishell.h
-CFILES = linked_list_fun.c utils_fun.c Tokenzition.c main.c
+CFILES = utils/linked_list_fun.c utils/utils_fun.c Tokenzition.c main.c
 OFILES = $(CFILES:%.c=%.o)
 LIBFT_DIR = libft
 RM = rm -rf

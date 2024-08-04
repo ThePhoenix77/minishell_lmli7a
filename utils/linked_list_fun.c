@@ -6,11 +6,11 @@
 /*   By: eaboudi <eaboudi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/26 10:03:44 by eaboudi           #+#    #+#             */
-/*   Updated: 2024/07/31 10:27:38 by eaboudi          ###   ########.fr       */
+/*   Updated: 2024/08/04 10:34:00 by eaboudi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
 t_lst   *new_node(void)
 {
@@ -48,7 +48,6 @@ bool   add_back(t_lst **head, t_lst  **new)
     return (Success);
 }
 
-
 void	free_lst(t_lst	**head)
 {
 	t_lst *current;
@@ -66,4 +65,17 @@ void	free_lst(t_lst	**head)
         current = next_node;
     }
 	*head = NULL;
+}
+
+void	add_list(t_global *global)
+{
+	t_lst	*new;
+
+	new = new_node();
+	new->content = global->content;
+	new->state = global->state;
+	new->type = global->type;
+	new->len = ft_strlen(global->content);
+	add_back(&global->head, &new);
+	global->content = NULL;
 }

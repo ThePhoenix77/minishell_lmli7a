@@ -6,7 +6,7 @@
 /*   By: eaboudi <eaboudi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 15:06:33 by eaboudi           #+#    #+#             */
-/*   Updated: 2024/07/31 09:55:12 by eaboudi          ###   ########.fr       */
+/*   Updated: 2024/08/04 11:44:47 by eaboudi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,19 +26,10 @@ void	get_line(t_global *global)
 		if (!global->line_input)
 			break ;
 		add_history(global->line_input);
-		if (global->line_input[0] == '#')
-			continue;
-		// ft_tokeniz(global);
 		ft_get_token(global);
-		// free(global->line_input);
 	}
 	write_history(HISTORY_FILE);
 }
-
-// void	split_input(t_global *global)
-// {
-	
-// }
 
 int main(int argc, char **argv, char **env)
 {
@@ -49,6 +40,7 @@ int main(int argc, char **argv, char **env)
 	t_global	global;
 
 	global.env = env;
+	global.state = GENERAL;
 	get_line(&global);
 	return (0);
 }
